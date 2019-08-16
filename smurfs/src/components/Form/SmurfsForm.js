@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Form as FormikForm, Field, withFormik } from 'formik';
 import Smurfs from '../Smurfs/Smurfs';
 import * as Yup from 'yup';
+import SmurfContext from '../../contexts/SmurfContext'
 
 // const SmurfsForm = props => {
 // 	console.log(props);
@@ -37,7 +38,7 @@ const SmurfsForm = (props) => {
     console.log(props)
     const { errors, touched, values, handleSubmit, status } = props;
     
-    const [ smurfs, setSmurfs ] = useState(null);
+    const [ smurfs, setSmurfs ] = useState([]);
 
 	// const [ status, setStatus ] = useState(null);
 
@@ -51,18 +52,14 @@ const SmurfsForm = (props) => {
 				console.log('server error', e);
 			});
 	}, []);
-	// const [
-	// 	users,
-	// 	setUser
-	// ] = useState([]);
 
 	useEffect(
 		() => {
 			status &&
-				setSmurfs(
+				setSmurfs({
 					...smurfs,
 					status
-				);
+                });
 		},
 		[
 			status
@@ -70,9 +67,11 @@ const SmurfsForm = (props) => {
 	);
 
 	console.log('this is the status', status);
-    console.log('this is the users list', smurfs);
+    console.log('this is the smurfs list', smurfs);
 
 	return (
+        <SmurfContext.Provider value={smurfs}>
+
         <>
         <div className="panel">
 		<div className="user-form">
@@ -96,6 +95,7 @@ const SmurfsForm = (props) => {
         <Smurfs smurfs={smurfs} />
         </div>
         </>
+        </SmurfContext.Provider>
 	);
 };
 
