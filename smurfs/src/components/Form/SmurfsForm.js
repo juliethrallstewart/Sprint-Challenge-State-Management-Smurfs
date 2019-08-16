@@ -10,7 +10,7 @@ const SmurfsForm = (props) => {
 
     const { errors, touched, values, handleSubmit, status } = props;
     
-    const [ smurfs, setSmurfs ] = useState('');
+    const [ smurfs, setSmurfs ] = useState([]);
 
 	useEffect(() => {
 		axios
@@ -26,10 +26,9 @@ const SmurfsForm = (props) => {
 	useEffect(
 		() => {
 			status &&
-				setSmurfs({
-					...smurfs,
+				setSmurfs(
 					status
-                });
+                );
 		},
 		[
 			status
