@@ -5,42 +5,12 @@ import Smurfs from '../Smurfs/Smurfs';
 import * as Yup from 'yup';
 import SmurfContext from '../../contexts/SmurfContext'
 
-// const SmurfsForm = props => {
-// 	console.log(props);
-// 	const { addSmurf } = props;
-// 	const [ smurf, setSmurf ] = useState(null || { name: '', age: '', height: '' });
-
-// 	const handleChange = event => {
-// 		setSmurf({ ...smurf, [event.target.name]: event.target.value });
-// 		// console.log('handleChange', event.target.name, event.target.value, smurf);
-// 	};
-// 	const handleSubmit = event => {
-// 		event.preventDefault();
-// 		addSmurf(smurf);
-// 		setSmurf({ name: '', age: '', height: '' });
-// 	};
-// 	return (
-// 		<form onSubmit={handleSubmit}>
-// 			<input placeholder="name" value={smurf.name} name="name" onChange={handleChange} />
-// 			<input placeholder="age" value={smurf.age} name="age" onChange={handleChange} />
-// 			<input placeholder="height" value={smurf.height} name="height" onChange={handleChange} />
-// 			<button type="submit">Add Smurf</button>
-// 		</form>
-// 	);
-// };
-
-// export default SmurfsForm;
-
-
 
 const SmurfsForm = (props) => {
 
-    console.log(props)
     const { errors, touched, values, handleSubmit, status } = props;
     
-    const [ smurfs, setSmurfs ] = useState([]);
-
-	// const [ status, setStatus ] = useState(null);
+    const [ smurfs, setSmurfs ] = useState('');
 
 	useEffect(() => {
 		axios
@@ -51,8 +21,8 @@ const SmurfsForm = (props) => {
 			.catch(e => {
 				console.log('server error', e);
 			});
-	}, []);
-
+    }, [status]);
+    
 	useEffect(
 		() => {
 			status &&
@@ -70,7 +40,7 @@ const SmurfsForm = (props) => {
     console.log('this is the smurfs list', smurfs);
 
 	return (
-        <SmurfContext.Provider value={smurfs}>
+        <SmurfContext.Provider value={{smurfs}}>
 
         <>
         <div className="panel">
@@ -92,7 +62,7 @@ const SmurfsForm = (props) => {
         </div>
         <div className="panel">
             <h1>Smurf Roster</h1>
-        <Smurfs smurfs={smurfs} />
+        <Smurfs />
         </div>
         </>
         </SmurfContext.Provider>
@@ -102,11 +72,11 @@ const SmurfsForm = (props) => {
 
 
 const FormikUserForm = withFormik({
-	mapPropsToValues ({ name, email, terms }) {
+	mapPropsToValues ({ name, age, height }) {
 		return {
-			terms    : terms || false,
-			email    : email || '',
             name     : name || '',
+            age: age || '',
+            height: height || '',
 		};
 	},
 
