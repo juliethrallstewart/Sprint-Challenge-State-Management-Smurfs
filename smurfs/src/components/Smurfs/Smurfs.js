@@ -1,29 +1,24 @@
 import React, { useContext } from 'react';
 import SmurfContext from '../../contexts/SmurfContext';
+import './smurfs.css'
 
 	const Smurfs = (props) => {
-	    const { smurfs } = useContext(SmurfContext)
+        const { smurfs } = useContext(SmurfContext)
+        
 	    return (
 	        <>
-	        <div className="user-list">
+	        <div className="smurf-list">
 	        {smurfs.map((item) => {
-	                // return <p>{item.name}</p>;
-	                return <table>
-	                    <tr>
-	                    <th>Name</th>
-	                    <th>age</th>
-	                    </tr>
-	                    <tr>
-	                    <td>{item.name}</td>
-	                    <td>{item.age}</td>
-	                    </tr>
-	                </table>
-	            })}
+	                return (
+                    <div key={item.id} className="smurf-container">
+                    <p><span>Name:</span> {item.name}</p>
+                    <p><span>Age:</span> {item.age}</p>
+                    <p><span>Height:</span> {item.height}</p>
+                    </div>
+            )})}
 	        </div>
 	        </>
 	    )
 	}
-
-	// return <div>Where are my smurfs?</div>;
 
 export default Smurfs;

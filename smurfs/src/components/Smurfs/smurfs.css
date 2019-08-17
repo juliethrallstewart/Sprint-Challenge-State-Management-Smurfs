@@ -1,0 +1,61 @@
+.smurf-list {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 20px 50px;
+}
+
+.smurf-container {
+	border: 5px solid #03c6fc;
+	width: 30%;
+	margin: 3px;
+}
+
+span {
+	color: #038cfc;
+}
+
+p {
+	/* color: #03c6fc; */
+	color: #03c6fc;
+}
+
+.smurf-form {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	text-align: center;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+}
+
+h1 {
+	color: #03c6fc;
+}
+
+input {
+	width: 300px;
+	margin-top: 10px;
+}
+
+button {
+	width: 100px;
+	margin-top: 20px;
+}
+
+.error {
+	font-size: 10px;
+}
+
+.panel {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+}
