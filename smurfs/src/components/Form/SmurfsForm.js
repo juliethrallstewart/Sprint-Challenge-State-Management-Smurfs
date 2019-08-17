@@ -102,16 +102,16 @@ const SmurfsForm = props => {
 
 	const { addSmurf } = props;
 
-	const [ smurf, setSmurf ] = useState({ name: '', age: '', height: '' });
+	const [ newSmurf, setNewSmurf ] = useState({ name: '', age: '', height: '' });
 
 	const handleChange = event => {
-		setSmurf({ ...smurf, [event.target.name]: event.target.value });
+		setNewSmurf({ ...newSmurf, [event.target.name]: event.target.value });
 		// console.log('handleChange', event.target.name, event.target.value, smurf);
 	};
 	const handleSubmit = event => {
 		event.preventDefault();
-		addSmurf(smurf);
-		setSmurf({ name: '', age: '', height: '' });
+		addSmurf(newSmurf);
+		setNewSmurf({ name: '', age: '', height: '' });
 	};
 	return (
         <>
@@ -119,9 +119,9 @@ const SmurfsForm = props => {
 				<div className="smurf-form">
                 <h1>Get on the Smurf Roster!!</h1>
 					<form onSubmit={handleSubmit}>
-						<input placeholder="name" value={smurf.name} name="name" onChange={handleChange} />
-						<input placeholder="age" value={smurf.age} name="age" onChange={handleChange} />
-						<input placeholder="height" value={smurf.height} name="height" onChange={handleChange} />
+						<input placeholder="name" value={newSmurf.name} name="name" onChange={handleChange} />
+						<input placeholder="age" value={newSmurf.age} name="age" onChange={handleChange} />
+						<input placeholder="height" value={newSmurf.height} name="height" onChange={handleChange} />
 						<button type="submit">Add Smurf</button>
 					</form>
 				</div>

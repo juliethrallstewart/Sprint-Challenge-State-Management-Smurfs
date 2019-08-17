@@ -33,16 +33,16 @@ function App () {
 			});
 	}, []);
 
-	const addSmurf = smurf => {
+	const addSmurf = newSmurf => {
 		axios
-			.post('http://localhost:3333/smurfs', smurf)
+			.post('http://localhost:3333/smurfs', newSmurf)
 			.then(res => {
 				setSmurfs(res.data);
 			})
 			.catch(err => console.log(err.response));
 	};
 
-	console.log('Smurfs List', smurfs);
+	// console.log('Smurfs List', smurfs);
 
 	return (
 		<SmurfContext.Provider value={{ smurfs }}>
